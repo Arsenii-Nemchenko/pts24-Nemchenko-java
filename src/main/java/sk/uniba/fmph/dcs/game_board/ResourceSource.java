@@ -1,161 +1,153 @@
 package sk.uniba.fmph.dcs.game_board;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.*;
-
 import java.util.Map;
 
-public final class ResourceSource implements InterfaceFigureLocationInternal {
-    private final String name;
+public class ResourceSource implements InterfaceFigureLocationInternal {
+    private String name;
     private final Effect resource;
-    private final int maxFigures;
+    private int maxFigures;
     private final int maxFigureColors;
-    private final ArrayList<PlayerOrder> figures;
+    private List<PlayerOrder> figures;
 
-    public ResourceSource(String name, Effect resource, int maxFigures, int maxFigureColors) {
-        if (!resource.isResourceOrFood()) {
-            throw new IllegalArgumentException("Resource must be food or resource");
-        }
-        this.name = name;
+    private CurrentThrow currentThrow;
+
+    public ResourceSource(String name, Effect resource, int maxFigures, int maxFigureColors, CurrentThrow currentThrow) {
+        this.currentThrow = currentThrow;
         this.resource = resource;
+        this.name = name;
         this.maxFigures = maxFigures;
         this.maxFigureColors = maxFigureColors;
-        this.figures = new ArrayList<>();
+        figures = new ArrayList<>();
     }
 
+    //Places figureCount figures
     @Override
     public boolean placeFigures(Player player, int figureCount) {
-        // Check if player can place figures here
-        if (!canPlaceFigures(player, figureCount)) {
+        if(!canPlaceFigures(player, figureCount)){
             return false;
         }
 
-        // Add the figures
         for (int i = 0; i < figureCount; i++) {
-            figures.add(player.playerOrder());
+            this.figures.add(player.playerOrder());
+        }
+        player.playerBoard().takeFigures(figureCount);
+
+        return true;
+    }
+
+    //Returns true if player can place figureCount figures
+    private boolean canPlaceFigures(Player player, int figureCount){
+        if (figures.contains(player.playerOrder()) || !player.playerBoard().hasFigures(figureCount)) {
+            return false;
+        }
+
+        if (maxFigures - figures.size() < figureCount) {
+            return false;
+        }
+
+        List<PlayerOrder> differentPlayerFigures = new ArrayList<>();
+        for (PlayerOrder order : this.figures) {
+            if (!differentPlayerFigures.contains(order)) {
+                differentPlayerFigures.add(order);
+            }
+        }
+
+        if(maxFigureColors <= differentPlayerFigures.size()){
+            return false;
         }
         return true;
     }
 
+    //Tries to place figures
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
-        if (!player.playerBoard().hasFigures(count)) {
-            return HasAction.NO_ACTION_POSSIBLE;
+        if (placeFigures(player, count)) {
+            return HasAction.AUTOMATIC_ACTION_DONE;
         }
-
-        if (canPlaceFigures(player, count)) {
-            return HasAction.WAITING_FOR_PLAYER_ACTION;
-        }
-
         return HasAction.NO_ACTION_POSSIBLE;
     }
 
+    //Makes action and uses tools at once
     @Override
-    public ActionResult makeAction(Player player, Collection<Effect> inputResources, Collection<Effect> outputResources) {
-        // Verify it's this player's figures
-        if (!hasFiguresFromPlayer(player.playerOrder())) {
+    public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
+        if (outputResources.length != 0) {
             return ActionResult.FAILURE;
         }
 
-        // Resource sources don't take input resources
-        if (!inputResources.isEmpty()) {
-            return ActionResult.FAILURE;
+        int playerFigureCount = 0;
+        for (PlayerOrder playerOrder : figures) {
+            if (playerOrder.equals(player.playerOrder())) {
+                playerFigureCount++;
+            }
+        }
+        currentThrow.initiate(player, resource, playerFigureCount);
+
+
+        List<PlayerOrder> toRemove = new ArrayList<>();
+        for(PlayerOrder playerOrder: figures){
+            if(playerOrder.equals(player.playerOrder())){
+                toRemove.add(playerOrder);
+            }
         }
 
-        // Resource sources must output exactly one type of resource per figure
-        int playerFigureCount = countPlayerFigures(player.playerOrder());
-        if (outputResources.size() != playerFigureCount) {
-            return ActionResult.FAILURE;
-        }
-        for (Effect output : outputResources) {
-            if (output != this.resource) {
+        figures.removeAll(toRemove);
+
+        for (Effect effect : inputResources) {
+            if (effect != Effect.TOOL) {
                 return ActionResult.FAILURE;
             }
         }
 
-        return ActionResult.ACTION_DONE_WAIT_FOR_TOOL_USE;
+        for (Effect effect : inputResources) {
+            int i = 0;
+            while (currentThrow.canUseTools() && !currentThrow.useTool(i++)){
+                if(i == 6){
+                    break;
+                }
+            }
+        }
+        currentThrow.finishUsingTools();
+
+        return ActionResult.ACTION_DONE;
     }
 
+    //You never can skip this action
+    @Override
+    public boolean skipAction(final Player player) {
+        return false;
+    }
+    //Tries to make action
     @Override
     public HasAction tryToMakeAction(Player player) {
-        if (hasFiguresFromPlayer(player.playerOrder())) {
+        if (figures.contains(player.playerOrder())) {
             return HasAction.WAITING_FOR_PLAYER_ACTION;
         }
+
         return HasAction.NO_ACTION_POSSIBLE;
     }
 
-    @Override
-    public boolean skipAction(Player player) {
-        return false; // Can't skip resource gathering
-    }
-
+    //If no action possible returns true
     @Override
     public boolean newTurn() {
-        figures.clear();
-        return false; // Resource sources don't trigger game end
-    }
-
-    private boolean canPlaceFigures(Player player, int figureCount) {
-        // Check if player has enough figures
-        if (!player.playerBoard().hasFigures(figureCount)) {
+        if (!figures.isEmpty()) {
             return false;
-        }
-
-        // Check if space available
-        if (figures.size() + figureCount > maxFigures) {
-            return false;
-        }
-
-        // Check if player already has figures here
-        if (hasFiguresFromPlayer(player.playerOrder())) {
-            return false;
-        }
-
-        // Check number of different players
-        if (!figures.isEmpty() && !containsPlayerOrder(figures, player.playerOrder())) {
-            int currentColors = countDistinctPlayers();
-            if (currentColors >= maxFigureColors) {
-                return false;
-            }
         }
 
         return true;
     }
 
-    private boolean hasFiguresFromPlayer(PlayerOrder player) {
-        return containsPlayerOrder(figures, player);
-    }
-
-    private int countPlayerFigures(PlayerOrder player) {
-        int count = 0;
-        for (PlayerOrder p : figures) {
-            if (p.equals(player)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private int countDistinctPlayers() {
-        return (int) figures.stream().distinct().count();
-    }
-
-    private boolean containsPlayerOrder(Collection<PlayerOrder> collection, PlayerOrder player) {
-        return collection.stream().anyMatch(p -> p.equals(player));
-    }
-
+    //Returns state of ResourceSource class
     public String state() {
         Map<String, Object> state = Map.of(
                 "name", name,
                 "resource", resource,
                 "maxFigures", maxFigures,
                 "maxFigureColors", maxFigureColors,
-                "figures", figures.stream().map(PlayerOrder::getOrder).toList()
-        );
+                "figures", figures);
         return new JSONObject(state).toString();
     }
 }

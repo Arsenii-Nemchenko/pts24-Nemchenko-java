@@ -14,7 +14,7 @@ public class ToolMakerHutFields{
     private final int restriction;
 
 
-    public ToolMakerHutFields(final int numberOfPlayers){
+    public ToolMakerHutFields(int numberOfPlayers){
         if(numberOfPlayers<4){
             this.restriction = 2;
         }else{
@@ -39,7 +39,7 @@ public class ToolMakerHutFields{
 
 
 
-    public boolean placeOnToolMaker(final Player player){
+    public boolean placeOnToolMaker(Player player){
         if(!canPlaceOnToolMaker(player)){
             return false;
         }
@@ -48,7 +48,7 @@ public class ToolMakerHutFields{
         return true;
     }
 
-    public boolean actionToolMaker(final Player player){
+    public boolean actionToolMaker(Player player){
         if(!player.playerOrder().equals(toolMakerFigures)){
             return false;
         }
@@ -58,11 +58,11 @@ public class ToolMakerHutFields{
         return true;
     }
     //
-    public boolean canPlaceOnToolMaker(final Player player){
+    public boolean canPlaceOnToolMaker(Player player){
         return toolMakerFigures == null && checkRestriction();
     }
 
-    public boolean placeOnHut(final Player player){
+    public boolean placeOnHut(Player player){
         if(!canPlaceOnHut(player)){
             return false;
         }
@@ -71,11 +71,11 @@ public class ToolMakerHutFields{
         return true;
     }
 
-    public boolean canPlaceOnHut(final Player player){
+    public boolean canPlaceOnHut(Player player){
         return hutFigures == null && checkRestriction();
     }
 
-    public boolean actionHut(final Player player){
+    public boolean actionHut(Player player){
         if(!player.playerOrder().equals(hutFigures)){
             return false;
         }
@@ -84,7 +84,7 @@ public class ToolMakerHutFields{
         return true;
     }
 
-    public boolean placeOnFields(final Player player){
+    public boolean placeOnFields(Player player){
         if(!canPlaceOnFields(player)){
             return false;
         }
@@ -94,7 +94,7 @@ public class ToolMakerHutFields{
 
     }
 
-    public boolean actionFields(final Player player){
+    public boolean actionFields(Player player){
         if(!player.playerOrder().equals(fieldsFigures)){
             return false;
         }
@@ -104,7 +104,7 @@ public class ToolMakerHutFields{
         return true;
     }
 
-    public boolean canPlaceOnFields(final Player player){
+    public boolean canPlaceOnFields(Player player){
         return fieldsFigures == null && checkRestriction();
     }
     public boolean newTurn(){

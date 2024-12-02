@@ -3,6 +3,7 @@ package sk.uniba.fmph.dcs.stone_age;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import sk.uniba.fmph.dcs.player_board.PlayerFigures;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +13,7 @@ public class TribeFedStatusTest {
     
     @Before
     public void setUp() {
-        status = new TribeFedStatus();
+        status = new TribeFedStatus(new PlayerFigures());
     }
 
     @Test

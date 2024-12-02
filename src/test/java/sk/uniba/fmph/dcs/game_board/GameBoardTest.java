@@ -76,7 +76,7 @@ public class GameBoardTest {
         }
 
         // Initialize the GameBoard
-        gameBoard = new GameBoard(players, buildings, civilizationCards);
+        gameBoard = new GameBoard(players);
     }
 
     @Test

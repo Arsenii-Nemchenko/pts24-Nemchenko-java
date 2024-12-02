@@ -1,11 +1,6 @@
 package sk.uniba.fmph.dcs.game_board;
 
-import sk.uniba.fmph.dcs.stone_age.HasAction;
-import sk.uniba.fmph.dcs.stone_age.Effect;
-import sk.uniba.fmph.dcs.stone_age.ActionResult;
-import sk.uniba.fmph.dcs.stone_age.InterfaceFigureLocation;
-import sk.uniba.fmph.dcs.stone_age.Player;
-import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
+import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.*;
 
@@ -46,17 +41,19 @@ public class FigureLocationAdaptor implements InterfaceFigureLocation {
         if (pl != null) {
             return figureLocation.tryToPlaceFigures(pl, count);
         }
-        return HasAction.NO_ACTION_POSSIBLE;
+        return null;
     }
 
     // Performs an action for the player using input and output resources
     @Override
     public ActionResult makeAction(PlayerOrder player, Collection<Effect> inputResources, Collection<Effect> outputResources) {
+        Effect[] input = inputResources.toArray(new Effect[0]);
+        Effect[] output = outputResources.toArray(new Effect[0]);
         Player pl = getPlayerOrder(player);
         if (pl != null) {
-            return figureLocation.makeAction(pl, inputResources, outputResources);
+            return figureLocation.makeAction(pl, input, output);
         }
-        return ActionResult.FAILURE;
+        return null;
     }
 
     // Skips the action
@@ -74,9 +71,9 @@ public class FigureLocationAdaptor implements InterfaceFigureLocation {
     public HasAction tryToMakeAction(PlayerOrder player) {
         Player pl = getPlayerOrder(player);
         if (pl != null) {
-            return figureLocation.tryToMakeAction(pl);
+            figureLocation.tryToMakeAction(pl);
         }
-        return HasAction.NO_ACTION_POSSIBLE;
+        return null;
     }
 
     @Override

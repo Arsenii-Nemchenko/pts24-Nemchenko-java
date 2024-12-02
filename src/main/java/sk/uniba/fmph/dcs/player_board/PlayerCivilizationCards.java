@@ -2,16 +2,12 @@ package sk.uniba.fmph.dcs.player_board;
 
 import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.InterfaceGetState;
-import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 public class PlayerCivilizationCards implements InterfaceGetState {
-    private final Map<EndOfGameEffect, Integer> endOfGameEffectMap;
-
-    public PlayerCivilizationCards(){
-        endOfGameEffectMap = new HashMap<>();
-    }
+    private final Map<EndOfGameEffect, Integer> endOfGameEffectMap = new HashMap<>();
 
     public void addEndOfGameEffects(EndOfGameEffect[] effects){
         for (EndOfGameEffect effect : effects) {
@@ -28,10 +24,10 @@ public class PlayerCivilizationCards implements InterfaceGetState {
         Map<EndOfGameEffect, Integer> greenCards = new HashMap<>();
         for(EndOfGameEffect effect: endOfGameEffectMap.keySet()){
             switch (effect){
-                case FARMER -> sumOfEndOfGameEffects += fields * endOfGameEffectMap.get(effect);
-                case TOOL_MAKER -> sumOfEndOfGameEffects += tools * endOfGameEffectMap.get(effect);
-                case BUILDER -> sumOfEndOfGameEffects += buildings * endOfGameEffectMap.get(effect);
-                case SHAMAN -> sumOfEndOfGameEffects += figures * endOfGameEffectMap.get(effect);
+                case Farmer -> sumOfEndOfGameEffects += fields * endOfGameEffectMap.get(effect);
+                case ToolMaker -> sumOfEndOfGameEffects += tools * endOfGameEffectMap.get(effect);
+                case Builder -> sumOfEndOfGameEffects += buildings * endOfGameEffectMap.get(effect);
+                case Shaman -> sumOfEndOfGameEffects += figures * endOfGameEffectMap.get(effect);
                 default -> greenCards.put(effect, endOfGameEffectMap.get(effect));
             }
         }
@@ -65,7 +61,7 @@ public class PlayerCivilizationCards implements InterfaceGetState {
         return new JSONObject(state).toString();
     }
 
-    public Map<EndOfGameEffect, Integer> getEndOfGameEffectMap() {
+    public  Map<EndOfGameEffect, Integer> getEndOfGameEffectMap() {
         return endOfGameEffectMap;
     }
 }
