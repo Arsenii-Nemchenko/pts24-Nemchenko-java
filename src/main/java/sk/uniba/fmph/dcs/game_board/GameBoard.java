@@ -6,7 +6,7 @@ import sk.uniba.fmph.dcs.stone_age.*;
 import java.util.*;
 
 public class GameBoard implements InterfaceGetState {
-    private final Map<Location, InterfaceFigureLocationInternal> gameBoardLocations =  new HashMap<>();
+    private final Map<Location, InterfaceFigureLocation> gameBoardLocations =  new HashMap<>();
 
     public GameBoard(List<Player> players) {
         List<CivilizationCard> civilizationCards = getCards();
@@ -38,16 +38,16 @@ public class GameBoard implements InterfaceGetState {
                 getChoice, getThrow, getCard, getReward, getFixed
         );
 
-        gameBoardLocations.put(Location.CIVILISATION_CARD1, civilizationCardPlace1);
-        gameBoardLocations.put(Location.CIVILISATION_CARD2, civilizationCardPlace2);
-        gameBoardLocations.put(Location.CIVILISATION_CARD3, civilizationCardPlace3);
-        gameBoardLocations.put(Location.CIVILISATION_CARD4, civilizationCardPlace4);
+        gameBoardLocations.put(Location.CIVILISATION_CARD1, new FigureLocationAdaptor(civilizationCardPlace1, players));
+        gameBoardLocations.put(Location.CIVILISATION_CARD2, new FigureLocationAdaptor(civilizationCardPlace2, players));
+        gameBoardLocations.put(Location.CIVILISATION_CARD3, new FigureLocationAdaptor(civilizationCardPlace3, players));
+        gameBoardLocations.put(Location.CIVILISATION_CARD4, new FigureLocationAdaptor(civilizationCardPlace4, players));
 
         ToolMakerHutFields toolMakerHutFields = new ToolMakerHutFields(players.size());
 
-        gameBoardLocations.put(Location.HUT, new PlaceOnHutAdaptor(toolMakerHutFields));
-        gameBoardLocations.put(Location.FIELD, new PlaceOnFieldsAdaptor(toolMakerHutFields));
-        gameBoardLocations.put(Location.TOOL_MAKER, new PlaceOnToolMakerAdaptor(toolMakerHutFields));
+        gameBoardLocations.put(Location.HUT, new FigureLocationAdaptor(new PlaceOnHutAdaptor(toolMakerHutFields), players));
+        gameBoardLocations.put(Location.FIELD, new FigureLocationAdaptor(new PlaceOnFieldsAdaptor(toolMakerHutFields), players));
+        gameBoardLocations.put(Location.TOOL_MAKER, new FigureLocationAdaptor(new PlaceOnToolMakerAdaptor(toolMakerHutFields), players));
 
         int maxFigures = 7;
         int maxFigureColors;
@@ -58,11 +58,26 @@ public class GameBoard implements InterfaceGetState {
         }else{
             maxFigureColors = 1;
         }
-        gameBoardLocations.put(Location.HUNTING_GROUNDS, new ResourceSource("Hunting grounds", Effect.FOOD, Integer.MAX_VALUE, Integer.MAX_VALUE, currentThrow));
-        gameBoardLocations.put(Location.CLAY_MOUND, new ResourceSource("Clay mound", Effect.CLAY, maxFigures, maxFigureColors, currentThrow));
-        gameBoardLocations.put(Location.FOREST, new ResourceSource("Forest", Effect.WOOD, maxFigures, maxFigureColors, currentThrow));
-        gameBoardLocations.put(Location.QUARY, new ResourceSource("Quarry", Effect.STONE, maxFigures, maxFigureColors, currentThrow));
-        gameBoardLocations.put(Location.RIVER, new ResourceSource("River", Effect.GOLD, maxFigures, maxFigureColors, currentThrow));
+        gameBoardLocations.put(
+                Location.HUNTING_GROUNDS,
+                new FigureLocationAdaptor(new ResourceSource("Hunting grounds", Effect.FOOD, Integer.MAX_VALUE, Integer.MAX_VALUE, currentThrow), players
+                ));
+        gameBoardLocations.put(
+                Location.CLAY_MOUND,
+                new FigureLocationAdaptor(new ResourceSource("Clay mound", Effect.CLAY, maxFigures, maxFigureColors, currentThrow), players
+                ));
+        gameBoardLocations.put(
+                Location.FOREST,
+                new FigureLocationAdaptor(new ResourceSource("Forest", Effect.WOOD, maxFigures, maxFigureColors, currentThrow), players
+                ));
+        gameBoardLocations.put(
+                Location.QUARY,
+                new FigureLocationAdaptor(new ResourceSource("Quarry", Effect.STONE, maxFigures, maxFigureColors, currentThrow), players
+                ));
+        gameBoardLocations.put(
+                Location.RIVER,
+                new FigureLocationAdaptor(new ResourceSource("River", Effect.GOLD, maxFigures, maxFigureColors, currentThrow), players
+                ));
 
 
 
@@ -92,13 +107,13 @@ public class GameBoard implements InterfaceGetState {
         }
 
 
-        gameBoardLocations.put(Location.BUILDING_TILE1, new BuildingTile(tile1));
-        gameBoardLocations.put(Location.BUILDING_TILE2, new BuildingTile(tile2));
+        gameBoardLocations.put(Location.BUILDING_TILE1, new FigureLocationAdaptor(new BuildingTile(tile1), players));
+        gameBoardLocations.put(Location.BUILDING_TILE2, new FigureLocationAdaptor(new BuildingTile(tile2), players));
         if(players.size() == 3) {
-            gameBoardLocations.put(Location.BUILDING_TILE3, new BuildingTile(tile3));
+            gameBoardLocations.put(Location.BUILDING_TILE3, new FigureLocationAdaptor(new BuildingTile(tile3), players));
         }
         if(players.size() == 4) {
-            gameBoardLocations.put(Location.BUILDING_TILE4, new BuildingTile(tile4));
+            gameBoardLocations.put(Location.BUILDING_TILE4, new FigureLocationAdaptor(new BuildingTile(tile4), players));
         }
 
 
@@ -200,7 +215,7 @@ public class GameBoard implements InterfaceGetState {
         return buildings;
     }
 
-    public Map<Location, InterfaceFigureLocationInternal> getMap(){
+    public final Map<Location, InterfaceFigureLocation> getMap(){
         return gameBoardLocations;
     }
     @Override

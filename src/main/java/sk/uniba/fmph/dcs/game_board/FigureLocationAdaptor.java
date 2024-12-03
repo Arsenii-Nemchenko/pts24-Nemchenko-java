@@ -41,7 +41,7 @@ public class FigureLocationAdaptor implements InterfaceFigureLocation {
         if (pl != null) {
             return figureLocation.tryToPlaceFigures(pl, count);
         }
-        return null;
+        return HasAction.NO_ACTION_POSSIBLE;
     }
 
     // Performs an action for the player using input and output resources
@@ -53,7 +53,7 @@ public class FigureLocationAdaptor implements InterfaceFigureLocation {
         if (pl != null) {
             return figureLocation.makeAction(pl, input, output);
         }
-        return null;
+        return ActionResult.FAILURE;
     }
 
     // Skips the action

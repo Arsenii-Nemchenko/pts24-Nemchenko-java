@@ -1,12 +1,9 @@
 package sk.uniba.fmph.dcs.player_board;
 
-import sk.uniba.fmph.dcs.stone_age.Effect;
-import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
-import sk.uniba.fmph.dcs.stone_age.InterfaceFeedTribe;
-import sk.uniba.fmph.dcs.stone_age.InterfaceNewTurn;
-import sk.uniba.fmph.dcs.stone_age.InterfacePlayerBoardGameBoard;
+import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, InterfaceNewTurn, InterfacePlayerBoardGameBoard {
@@ -42,8 +39,7 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      */
     @Override
     public boolean feedTribe(final Collection<Effect> resources) {
-        Effect[] resourcesArray = resources.toArray(new Effect[0]);
-        return this.playerBoard.getTribeFedStatus().feedTribe(resourcesArray);
+        return this.playerBoard.getTribeFedStatus().feedTribe(resources);
     }
 
     /**
@@ -82,7 +78,7 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      */
     @Override
     public void giveEffect(final Effect[] effects) {
-        this.playerBoard.getPlayerResourcesAndFood().giveResources(effects);
+        this.playerBoard.getPlayerResourcesAndFood().giveResources(List.of(effects));
     }
 
     /**
@@ -158,7 +154,7 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
     /** @param idx - index of the tool we use */
     @Override
     public Optional<Integer> useTool(final int idx) {
-        Integer value = this.playerBoard.getPlayerTools().useTool(idx);
-        return Optional.of(value);
+        Optional<Integer> value = this.playerBoard.getPlayerTools().useTool(idx);
+        return value;
     }
 }

@@ -1,5 +1,6 @@
 package sk.uniba.fmph.dcs.player_board;
 
+
 import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
 
 import java.util.*;
@@ -57,7 +58,7 @@ public class PlayerCivilisationCards {
         }
 
         ans += Math.max(buildings, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.BUILDER);
-        ans += Math.max(tools, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.TOOL_MAKER);
+        ans += Math.max(tools, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.TOOLMAKER);
         ans += Math.max(fields, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.FARMER);
         ans += Math.max(figures, 0) * endOfGameEffectsCopy.get(EndOfGameEffect.SHAMAN);
 

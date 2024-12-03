@@ -1,6 +1,7 @@
 package sk.uniba.fmph.dcs.stone_age;
 
 import sk.uniba.fmph.dcs.game_board.CivilizationCard;
+import sk.uniba.fmph.dcs.player_board.EndOfGameEffect;
 
 import java.util.Collection;
 import java.util.Optional;
