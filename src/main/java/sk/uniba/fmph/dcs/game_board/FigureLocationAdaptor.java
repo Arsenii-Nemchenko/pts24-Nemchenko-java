@@ -17,7 +17,7 @@ public class FigureLocationAdaptor implements InterfaceFigureLocation {
     // Helper method to find the Player object by PlayerOrder
     private Player getPlayerOrder(PlayerOrder player) {
         for (Player pl : players) {
-            if (pl.playerOrder().equals(player)) {
+            if (pl.getPlayerOrder().equals(player)) {
                 return pl;
             }
         }

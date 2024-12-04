@@ -9,12 +9,12 @@ public class PlayerBoard implements InterfaceGetState {
     private final PlayerResourcesAndFood playerResourcesAndFood;
     private final PlayerFigures playerFigures;
     private final PlayerTools playerTools;
-    private final PlayerCivilisationCards playerCivilisationCards;
+    private final PlayerCivilizationCards playerCivilisationCards;
     private final TribeFedStatus tribeFedStatus;
 
     private boolean endOfGamePointsAdded;
 
-    public PlayerBoard(final PlayerCivilisationCards pcc, final PlayerFigures pf, final PlayerResourcesAndFood prf,
+    public PlayerBoard(final PlayerCivilizationCards pcc, final PlayerFigures pf, final PlayerResourcesAndFood prf,
                        final PlayerTools pt, final TribeFedStatus tfs) {
         this.playerCivilisationCards = pcc;
         this.playerFigures = pf;
@@ -31,7 +31,7 @@ public class PlayerBoard implements InterfaceGetState {
         this.playerResourcesAndFood = new PlayerResourcesAndFood();
         this.playerFigures = new PlayerFigures();
         this.playerTools = new PlayerTools();
-        this.playerCivilisationCards = new PlayerCivilisationCards();
+        this.playerCivilisationCards = new PlayerCivilizationCards();
         this.tribeFedStatus = new TribeFedStatus(this.playerFigures);
 
         this.points = 0;
@@ -85,7 +85,7 @@ public class PlayerBoard implements InterfaceGetState {
      *
      * @return the PlayerCivilisationCards object containing the player's civilization cards.
      */
-    public PlayerCivilisationCards getPlayerCivilisationCards() {
+    public PlayerCivilizationCards getPlayerCivilisationCards() {
         return this.playerCivilisationCards;
     }
 
@@ -126,8 +126,8 @@ public class PlayerBoard implements InterfaceGetState {
         if (this.endOfGamePointsAdded) {
             return;
         }
-        this.points += this.playerCivilisationCards.calculateEndOfGameCivilisationCardsPoints(this.houses,
-                this.playerTools.getTools(), this.tribeFedStatus.getFields(),
+        this.points += this.playerCivilisationCards.calculateEndOfGameCivilizationCardPoints(this.houses,
+                this.playerTools.getTotalToolsCount(), this.tribeFedStatus.getFields(),
                 this.playerFigures.getTotalFigures());
         this.points += this.playerResourcesAndFood.numberOfResourcesForFinalPoints();
 

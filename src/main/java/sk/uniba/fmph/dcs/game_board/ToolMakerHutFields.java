@@ -44,17 +44,18 @@ public class ToolMakerHutFields{
             return false;
         }
 
-        toolMakerFigures = player.playerOrder();
+        toolMakerFigures = player.getPlayerOrder();
         return true;
     }
 
     public boolean actionToolMaker(Player player){
-        if(!player.playerOrder().equals(toolMakerFigures)){
+        if(!player.getPlayerOrder().equals(toolMakerFigures)){
             return false;
         }
         ArrayList<Effect> list = new ArrayList<>();
         list.add(Effect.TOOL);
-        player.playerBoard().giveEffect(list);
+        player.getPlayerBoard().giveEffect(list);
+        toolMakerFigures = null;
         return true;
     }
     //
@@ -67,7 +68,7 @@ public class ToolMakerHutFields{
             return false;
         }
 
-        hutFigures = player.playerOrder();
+        hutFigures = player.getPlayerOrder();
         return true;
     }
 
@@ -76,11 +77,12 @@ public class ToolMakerHutFields{
     }
 
     public boolean actionHut(Player player){
-        if(!player.playerOrder().equals(hutFigures)){
+        if(!player.getPlayerOrder().equals(hutFigures)){
             return false;
         }
 
-        player.playerBoard().giveFigure();
+        player.getPlayerBoard().giveFigure();
+        hutFigures =null;
         return true;
     }
 
@@ -89,18 +91,19 @@ public class ToolMakerHutFields{
             return false;
         }
 
-        fieldsFigures = player.playerOrder();
+        fieldsFigures = player.getPlayerOrder();
         return true;
 
     }
 
     public boolean actionFields(Player player){
-        if(!player.playerOrder().equals(fieldsFigures)){
+        if(!player.getPlayerOrder().equals(fieldsFigures)){
             return false;
         }
         ArrayList<Effect> list = new ArrayList<>();
         list.add(Effect.FIELD);
-        player.playerBoard().giveEffect(list);
+        player.getPlayerBoard().giveEffect(list);
+        fieldsFigures =null;
         return true;
     }
 
@@ -108,10 +111,7 @@ public class ToolMakerHutFields{
         return fieldsFigures == null && checkRestriction();
     }
     public boolean newTurn(){
-        toolMakerFigures = null;
-        hutFigures = null;
-        fieldsFigures = null;
-        return true;
+        return false;
     }
 
     public String state(){

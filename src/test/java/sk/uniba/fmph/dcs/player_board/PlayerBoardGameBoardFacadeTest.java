@@ -15,7 +15,7 @@ public class PlayerBoardGameBoardFacadeTest {
         PlayerResourcesAndFood prf = new PlayerResourcesAndFood();
         PlayerFigures figures = new PlayerFigures();
         TribeFedStatus tribeFedStatus = new TribeFedStatus(figures);
-        PlayerBoard pb = new PlayerBoard(new PlayerCivilisationCards(), figures, prf, new PlayerTools(), tribeFedStatus);
+        PlayerBoard pb = new PlayerBoard(new PlayerCivilizationCards(), figures, prf, new PlayerTools(), tribeFedStatus);
         PlayerBoardGameBoardFacade PBGBF = new PlayerBoardGameBoardFacade(pb);
         pb.getPlayerResourcesAndFood()
                 .giveResources(List.of(new Effect[]{Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD, Effect.FOOD}));

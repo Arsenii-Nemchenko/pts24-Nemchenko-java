@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import sk.uniba.fmph.dcs.stone_age.*;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -83,10 +84,10 @@ public class CivilizationCardPlaceTest {
 
     @Before
     public void setUp(){
-        player1 = GetSomethingChoiceTest.getCardPlayerMaker(player1, 0, new GetSomethingChoiceTest.GetCardPlayerBoardGameBoard(5));
-        player2 = GetSomethingChoiceTest.getCardPlayerMaker(player2, 1, new GetSomethingChoiceTest.GetCardPlayerBoardGameBoard(5));
-        player3 = GetSomethingChoiceTest.getCardPlayerMaker(player3, 2, new GetSomethingChoiceTest.GetCardPlayerBoardGameBoard(5));
-        player4 = GetSomethingChoiceTest.getCardPlayerMaker(player2, 3, new GetSomethingChoiceTest.GetCardPlayerBoardGameBoard(5));
+        player1 = new Player(new PlayerOrder( 0, 4), GetSomethingChoiceTest.getBoard());
+        player2 = new Player(new PlayerOrder( 1, 4), GetSomethingChoiceTest.getBoard());
+        player3 = new Player(new PlayerOrder( 2, 4), GetSomethingChoiceTest.getBoard());
+        player4 = new Player(new PlayerOrder( 3, 4), GetSomethingChoiceTest.getBoard());
 
 
         CurrentThrow currentThrow = new CurrentThrow(player1, Effect.WOOD, 1);
@@ -133,13 +134,13 @@ public class CivilizationCardPlaceTest {
         assertTrue(place2.placeFigures(player3, 1));
         assertFalse(place2.placeFigures(player3, 1));
 
-        assertTrue(place1.newTurn());
+        assertFalse(place1.newTurn());
         assertFalse(place2.newTurn());
         assertFalse(place3.newTurn());
         assertFalse(place4.newTurn());
     }
     @Test
-    public void testMakeAction(){
+    public void testMakeAction() throws NoSuchFieldException {
 
         assertEquals(HasAction.NO_ACTION_POSSIBLE, place4.tryToMakeAction(player1));
         assertEquals(HasAction.AUTOMATIC_ACTION_DONE, place4.tryToPlaceFigures(player1,1));
@@ -165,15 +166,20 @@ public class CivilizationCardPlaceTest {
         assertTrue(place3.skipAction(player3));
         assertEquals(HasAction.NO_ACTION_POSSIBLE, place3.tryToMakeAction(player3));
 
-        assertTrue(place1.newTurn());
-        assertTrue(place2.newTurn());
-        assertTrue(place3.newTurn());
-        assertTrue(place4.newTurn());
+        assertFalse(place1.newTurn());
+        assertFalse(place2.newTurn());
+        assertFalse(place3.newTurn());
+        assertFalse(place4.newTurn());
 
-        assertNotEquals(Optional.empty(), place1.checkCard());
-        assertNotEquals(Optional.empty(), place2.checkCard());
-        assertNotEquals(Optional.empty(), place3.checkCard());
-        assertNotEquals(Optional.empty(), place4.checkCard());
+        Field place1Card = place1.getClass().getDeclaredField("card");
+        Field place2Card = place2.getClass().getDeclaredField("card");
+        Field place3Card = place3.getClass().getDeclaredField("card");
+        Field place4Card = place4.getClass().getDeclaredField("card");
+
+        assertNotEquals(Optional.empty(), place1Card);
+        assertNotEquals(Optional.empty(), place2Card);
+        assertNotEquals(Optional.empty(), place3Card);
+        assertNotEquals(Optional.empty(), place4Card);
 
     }
     

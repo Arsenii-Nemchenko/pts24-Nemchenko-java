@@ -52,7 +52,7 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
     @Override
     public boolean placeFigures(Player player,int figureCount) {
 
-        if (figureCount != 1 || !player.playerBoard().hasFigures(figureCount)) {
+        if (figureCount != 1 || !player.getPlayerBoard().hasFigures(figureCount)) {
             return false;
         }
 
@@ -60,8 +60,8 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
             return false;
         }
 
-        figures = player.playerOrder();
-        player.playerBoard().takeFigures(1);
+        figures = player.getPlayerOrder();
+        player.getPlayerBoard().takeFigures(1);
         return true;
     }
 
@@ -82,7 +82,7 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
         List<Effect> input = Arrays.asList(inputResources);
 
-        if (!figures.equals(player.playerOrder())) {
+        if (!figures.equals(player.getPlayerOrder())) {
             return ActionResult.FAILURE;
         }
 
@@ -138,7 +138,7 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
     //Skips action
     @Override
     public boolean skipAction(Player player) {
-        if (!player.playerOrder().equals(figures)) {
+        if (!player.getPlayerOrder().equals(figures)) {
             return false;
         }
 
@@ -149,7 +149,7 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
     //Tries to make action
     @Override
     public HasAction tryToMakeAction(Player player) {
-        if (!player.playerOrder().equals(figures)) {
+        if (!player.getPlayerOrder().equals(figures)) {
             return HasAction.NO_ACTION_POSSIBLE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;
@@ -163,7 +163,10 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         }
 
         this.card = this.getNextCard();
-        return true;
+        if(card.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     //Shifts cards to the right
@@ -181,10 +184,6 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         }
         return card;
 
-    }
-
-    public final Optional<CivilizationCard> checkCard(){
-        return card;
     }
 
     //State of this cardPlace class

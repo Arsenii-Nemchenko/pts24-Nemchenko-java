@@ -15,108 +15,15 @@ public class ResourceSourceTest {
     private Player player2;
     private  Player player3;
     private Player player4;
-
-    public static Player playerMaker(Player player, int orderNum, InterfacePlayerBoardGameBoard board) {
-        PlayerOrder order = new PlayerOrder(orderNum, 4);
-        player = new Player() {
-            @Override
-            public PlayerOrder playerOrder() {
-                return order;
-            }
-
-            @Override
-            public InterfacePlayerBoardGameBoard playerBoard() {
-                return board;
-            }
-        };
-        return player;
-    }
-
-    public static class PlayerBoardGameBoard implements InterfacePlayerBoardGameBoard {
-        private List<Effect> resources = new ArrayList<>();
-        private int figures = 0;
-        private List<CivilizationCard> cards = new ArrayList<>();
-        private List<EndOfGameEffect> endOfGameEffects = new ArrayList<>();
-        private List<Integer> tools = new ArrayList<>();
-
-        public PlayerBoardGameBoard(int figureCount){
-            this.figures = figureCount;
-        }
-
-        @Override
-        public void giveEffect(Collection<Effect> stuff) {
-            resources.addAll(stuff);
-            for(Effect effect : stuff){
-                if(effect.equals(Effect.TOOL)){
-                    tools.add(1);
-                }
-            }
-        }
-
-        @Override
-        public void giveFigure() {
-            figures++;
-        }
-
-        @Override
-        public void giveEndOfGameEffect(Collection<EndOfGameEffect> stuff) {
-            endOfGameEffects.addAll(stuff);
-        }
-
-        @Override
-        public void giveCard(CivilizationCard card) {
-            cards.add(card);
-        }
-
-        @Override
-        public boolean takeResources(Collection<Effect> stuff) {
-            if (resources.containsAll(stuff)) {
-                resources.removeAll(stuff);
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public boolean takeFigures(int count) {
-            if (figures >= count) {
-                figures -= count;
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public boolean hasFigures(int count) {
-            return figures >= count;
-        }
-
-        @Override
-        public boolean hasSufficientTools(int goal) {
-            for (int tool : tools) {
-                if (tool >= goal) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        @Override
-        public Optional<Integer> useTool(int idx) {
-            if (idx >= 0 && idx < tools.size()) {
-                return Optional.of(tools.remove(idx));
-            }
-            return Optional.empty();
-        }
-    }
+    
 
 
     @Before
     public void setUp() {
-        player1 = playerMaker(player1, 0, new PlayerBoardGameBoard(5));
-        player2 = playerMaker(player2, 1,  new PlayerBoardGameBoard(5));
-        player3 = playerMaker(player3, 2,  new PlayerBoardGameBoard(5));
-        player4 = playerMaker(player4, 3,  new PlayerBoardGameBoard(5));
+        player1 = new Player(new PlayerOrder( 0, 4), GetSomethingChoiceTest.getBoard());
+        player2 = new Player(new PlayerOrder( 1, 4), GetSomethingChoiceTest.getBoard());
+        player3 = new Player(new PlayerOrder( 2, 4), GetSomethingChoiceTest.getBoard());
+        player4 = new Player(new PlayerOrder( 3, 4), GetSomethingChoiceTest.getBoard());
     }
 
     @Test
@@ -139,10 +46,10 @@ public class ResourceSourceTest {
         assertFalse(resourceSource.newTurn());
 
         //Give players tools
-        player1.playerBoard().giveEffect(List.of(Effect.TOOL));
-        player2.playerBoard().giveEffect(List.of(Effect.TOOL));
-        player3.playerBoard().giveEffect(List.of(Effect.TOOL));
-        player4.playerBoard().giveEffect(List.of(Effect.TOOL));
+        player1.getPlayerBoard().giveEffect(List.of(Effect.TOOL));
+        player2.getPlayerBoard().giveEffect(List.of(Effect.TOOL));
+        player3.getPlayerBoard().giveEffect(List.of(Effect.TOOL));
+        player4.getPlayerBoard().giveEffect(List.of(Effect.TOOL));
 
         //Players actions
         Effect[] output = new Effect[0];

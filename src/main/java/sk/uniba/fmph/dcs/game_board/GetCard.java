@@ -17,7 +17,7 @@ public class GetCard implements  EvaluateCivilizationCardImmediateEffect {
         if (effect.equals(Effect.CARD)) {
             Optional<CivilizationCard> card = deck.getTop();
             if(card.isPresent()) {
-                player.playerBoard().giveCard(card.get());
+                player.getPlayerBoard().giveEndOfGameEffect(card.get().getEndOfGameEffectType());
                 return true;
             }else{
                 return false;

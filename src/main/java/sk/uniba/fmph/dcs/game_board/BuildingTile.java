@@ -1,10 +1,6 @@
 package sk.uniba.fmph.dcs.game_board;
 
-import sk.uniba.fmph.dcs.stone_age.PlayerOrder;
-import sk.uniba.fmph.dcs.stone_age.Effect;
-import sk.uniba.fmph.dcs.stone_age.Player;
-import sk.uniba.fmph.dcs.stone_age.HasAction;
-import sk.uniba.fmph.dcs.stone_age.ActionResult;
+import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.*;
 
@@ -26,24 +22,24 @@ public class BuildingTile implements InterfaceFigureLocationInternal {
         if (figureCount != MAX_FIGURES || !figures.isEmpty()) {
             return false;
         }
-        figures.add(player.playerOrder());
+        figures.add(player.getPlayerOrder());
         return true;
     }
 
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
-        if (count != MAX_FIGURES || !figures.isEmpty()) {
+        if (!player.getPlayerBoard().hasFigures(count)) {
             return HasAction.NO_ACTION_POSSIBLE;
         }
-        if (!player.playerBoard().hasFigures(count)) {
-            return HasAction.NO_ACTION_POSSIBLE;
+        if(placeFigures(player, count)){
+            return HasAction.AUTOMATIC_ACTION_DONE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;
     }
 
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
-        if (figures.isEmpty() || !figures.get(0).equals(player.playerOrder())) {
+        if (figures.isEmpty() || !figures.get(0).equals(player.getPlayerBoard())) {
             return ActionResult.FAILURE;
         }
         
@@ -53,19 +49,22 @@ public class BuildingTile implements InterfaceFigureLocationInternal {
             return ActionResult.FAILURE;
         }
         OptionalInt points = buildings.pop().build(resources);
+        if(points.isEmpty()){
+            return ActionResult.FAILURE;
+        }
         
         // Give points to player
         List<Effect> pointsToGive = new ArrayList<>();
         for(int i=0; i<points.getAsInt(); i++){
             pointsToGive.add(Effect.POINT);
         }
-        player.playerBoard().giveEffect(pointsToGive);
+        player.getPlayerBoard().giveEffect(pointsToGive);
         return ActionResult.ACTION_DONE;
     }
 
     @Override
     public boolean skipAction(Player player) {
-        if (figures.isEmpty() || !figures.get(0).equals(player.playerOrder())) {
+        if (figures.isEmpty() || !figures.get(0).equals(player.getPlayerOrder())) {
             return false;
         }
         figures.clear();
@@ -74,7 +73,7 @@ public class BuildingTile implements InterfaceFigureLocationInternal {
 
     @Override
     public HasAction tryToMakeAction(Player player) {
-        if (figures.isEmpty() || !figures.get(0).equals(player.playerOrder())) {
+        if (figures.isEmpty() || !figures.get(0).equals(player.getPlayerOrder())) {
             return HasAction.NO_ACTION_POSSIBLE;
         }
         return HasAction.WAITING_FOR_PLAYER_ACTION;

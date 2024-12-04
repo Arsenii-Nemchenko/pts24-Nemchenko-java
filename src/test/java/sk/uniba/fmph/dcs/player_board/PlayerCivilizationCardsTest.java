@@ -1,6 +1,7 @@
 package sk.uniba.fmph.dcs.player_board;
 
 import org.junit.Test;
+import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
 
 import java.util.Optional;
 
@@ -12,31 +13,31 @@ public class PlayerCivilizationCardsTest {
     public void addEndOfGameEffects(){
         playerCivilizationCards = new PlayerCivilizationCards();
 
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Art});
-        assertEquals(Optional.of(1), playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.Art));
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.ART});
+        assertEquals(Optional.of(1), playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.ART));
 
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Art, EndOfGameEffect.Art});
-        assertEquals(Optional.of(3),playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.Art));
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.ART, EndOfGameEffect.ART});
+        assertEquals(Optional.of(3),playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.ART));
 
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Farmer, EndOfGameEffect.Farmer});
-        assertEquals(Optional.of(2), playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.Farmer));
-        assertEquals(Optional.of(3),playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.Art));
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.FARMER, EndOfGameEffect.FARMER});
+        assertEquals(Optional.of(2), playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.FARMER));
+        assertEquals(Optional.of(3),playerCivilizationCards.getEndOfGameEffectMap().get(EndOfGameEffect.ART));
     }
 
     @Test
     public void countEndOfGamePoints(){
         playerCivilizationCards = new PlayerCivilizationCards();
 
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Farmer, EndOfGameEffect.Farmer, EndOfGameEffect.Farmer});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Builder, EndOfGameEffect.Builder});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Shaman, EndOfGameEffect.Shaman,EndOfGameEffect.Shaman});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.ToolMaker});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.FARMER, EndOfGameEffect.FARMER, EndOfGameEffect.FARMER});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.BUILDER, EndOfGameEffect.BUILDER});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.SHAMAN, EndOfGameEffect.SHAMAN,EndOfGameEffect.SHAMAN});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.TOOL_MAKER});
 
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Art, EndOfGameEffect.Art});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Music, EndOfGameEffect.Music});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Pottery});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Sundial});
-        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.Transport});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.ART, EndOfGameEffect.ART});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.MUSIC, EndOfGameEffect.MUSIC});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.POTTERY});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.SUNDIAL});
+        playerCivilizationCards.addEndOfGameEffects(new EndOfGameEffect[]{EndOfGameEffect.TRANSPORT});
 
         assertEquals(82, playerCivilizationCards.calculateEndOfGameCivilizationCardPoints(3,8,4,9));
 

@@ -2,7 +2,6 @@ package sk.uniba.fmph.dcs.player_board;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 public class PlayerFiguresTest extends TestCase {
 private PlayerFigures playerFigures;

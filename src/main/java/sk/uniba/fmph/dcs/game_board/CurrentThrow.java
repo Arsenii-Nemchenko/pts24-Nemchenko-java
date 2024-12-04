@@ -38,7 +38,7 @@ public final class CurrentThrow implements InterfaceToolUse {
     @Override
     public boolean useTool(int idx) {
 
-        Optional<Integer> res = player.playerBoard().useTool(idx);
+        Optional<Integer> res = player.getPlayerBoard().useTool(idx);
         if (res.isEmpty()) {
             return false;
         }
@@ -49,7 +49,7 @@ public final class CurrentThrow implements InterfaceToolUse {
 
     @Override
     public boolean canUseTools() {
-        return player.playerBoard().hasSufficientTools(1);
+        return player.getPlayerBoard().hasSufficientTools(1);
     }
 
     @Override
@@ -57,6 +57,10 @@ public final class CurrentThrow implements InterfaceToolUse {
 
         List<Effect> list = new ArrayList<>();
         switch (throwsFor) {
+            case FOOD:
+                for(int i =0; i< this.throwResult/2; i++){
+                    list.add(Effect.FOOD);
+                }
             case WOOD:
                 for (int i = 0; i < this.throwResult / 3; i++) {
                     list.add(Effect.WOOD);
@@ -81,7 +85,7 @@ public final class CurrentThrow implements InterfaceToolUse {
                 return false;
         }
 
-        player.playerBoard().giveEffect(list);
+        player.getPlayerBoard().giveEffect(list);
 
         return true;
     }

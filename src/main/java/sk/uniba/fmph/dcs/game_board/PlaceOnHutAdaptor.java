@@ -1,51 +1,47 @@
 package sk.uniba.fmph.dcs.game_board;
 
+import java.util.Collection;
 
-import org.json.JSONObject;
-import sk.uniba.fmph.dcs.stone_age.ActionResult;
-import sk.uniba.fmph.dcs.stone_age.Effect;
-import sk.uniba.fmph.dcs.stone_age.HasAction;
-import sk.uniba.fmph.dcs.stone_age.Player;
+import sk.uniba.fmph.dcs.stone_age.*;
 
-import java.util.Map;
-
-public class PlaceOnHutAdaptor implements InterfaceFigureLocationInternal{
-    private ToolMakerHutFields toolMakerHutFields;
-
+public class PlaceOnHutAdaptor implements InterfaceFigureLocationInternal, InterfaceGetState {
+    private ToolMakerHutFields huts;
     public PlaceOnHutAdaptor(ToolMakerHutFields toolMakerHutFields){
-        this.toolMakerHutFields = toolMakerHutFields;
+        this.huts = toolMakerHutFields;
     }
     @Override
     public boolean placeFigures(Player player, int figureCount) {
-        if(figureCount >= 1 && toolMakerHutFields.canPlaceOnHut(player)){
-            toolMakerHutFields.placeOnHut(player);
-            return true;
+        if(tryToPlaceFigures(player, figureCount).equals(HasAction.WAITING_FOR_PLAYER_ACTION)){
+            if(huts.placeOnHut(player)){
+                player.getPlayerBoard().takeFigures(figureCount);
+                return true;
+            }
         }
         return false;
     }
 
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
-        if(!player.playerBoard().hasFigures(count)){
+        if(!player.getPlayerBoard().hasFigures(count)){
             return HasAction.NO_ACTION_POSSIBLE;
         }
-        if(toolMakerHutFields.canPlaceOnFields(player)){
-            return HasAction.WAITING_FOR_PLAYER_ACTION;
+
+        if(count != 2){
+            return HasAction.NO_ACTION_POSSIBLE;
         }
 
-        return HasAction.NO_ACTION_POSSIBLE;
+        if(!huts.canPlaceOnHut(player)){
+            return HasAction.NO_ACTION_POSSIBLE;
+        }
+
+        return HasAction.WAITING_FOR_PLAYER_ACTION;
     }
 
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
-        if(!toolMakerHutFields.canPlaceOnToolMaker(player)){
-            return ActionResult.FAILURE;
-        }
-
-        if(toolMakerHutFields.actionHut(player)) {
+        if(huts.actionHut(player)){
             return ActionResult.ACTION_DONE;
         }
-
         return ActionResult.FAILURE;
     }
 
@@ -56,20 +52,16 @@ public class PlaceOnHutAdaptor implements InterfaceFigureLocationInternal{
 
     @Override
     public HasAction tryToMakeAction(Player player) {
-        if(toolMakerHutFields.canPlaceOnHut(player)){
-            return HasAction.WAITING_FOR_PLAYER_ACTION;
-        }
-
-        return HasAction.NO_ACTION_POSSIBLE;
+        return HasAction.WAITING_FOR_PLAYER_ACTION;
     }
 
     @Override
     public boolean newTurn() {
-        return false;
+        return huts.newTurn();
     }
 
     @Override
     public String state() {
-        return new JSONObject(Map.of("toolMakerHutFields", toolMakerHutFields)).toString();
+        return huts.state();
     }
 }

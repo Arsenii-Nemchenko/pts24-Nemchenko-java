@@ -2,10 +2,7 @@ package sk.uniba.fmph.dcs.game_board;
 
 import org.junit.Before;
 import org.junit.Test;
-import sk.uniba.fmph.dcs.stone_age.Effect;
-import sk.uniba.fmph.dcs.stone_age.EndOfGameEffect;
-import sk.uniba.fmph.dcs.stone_age.ImmediateEffect;
-import sk.uniba.fmph.dcs.stone_age.Player;
+import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,7 +81,7 @@ public class GetCardTest {
     public void setUp(){
         deck = this.getDeck();
         getCard = new GetCard(deck);
-        player = GetSomethingChoiceTest.getCardPlayerMaker(player, 0, new GetSomethingChoiceTest.GetCardPlayerBoardGameBoard(5));
+        player =new Player(new PlayerOrder(0, 1) , GetSomethingChoiceTest.getBoard());
     }
 
     @Test

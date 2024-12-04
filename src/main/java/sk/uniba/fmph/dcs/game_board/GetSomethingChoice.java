@@ -17,11 +17,11 @@ public class GetSomethingChoice implements EvaluateCivilizationCardImmediateEffe
 
     //Player gets a resource choice
     @Override
-    public boolean performEffect(Player player,Effect choice) {
+    public boolean performEffect(Player player, Effect choice) {
         if(playerOrder ==null){
-            playerOrder = player.playerOrder();
+            playerOrder = player.getPlayerOrder();
         }
-        if(!playerOrder.equals(player.playerOrder())){
+        if(!playerOrder.equals(player.getPlayerOrder())){
             return false;
         }
         if (!choice.isResource() || totalNumber == 0) {
@@ -32,7 +32,7 @@ public class GetSomethingChoice implements EvaluateCivilizationCardImmediateEffe
         List<Effect> effectToGive = new ArrayList<>();
         effectToGive.add(choice);
 
-        player.playerBoard().giveEffect(effectToGive);
+        player.getPlayerBoard().giveEffect(effectToGive);
         return true;
     }
 

@@ -25,10 +25,10 @@ public class PlayerCivilizationCards implements InterfaceGetState {
         Map<EndOfGameEffect, Integer> greenCards = new HashMap<>();
         for(EndOfGameEffect effect: endOfGameEffectMap.keySet()){
             switch (effect){
-                case Farmer -> sumOfEndOfGameEffects += fields * endOfGameEffectMap.get(effect);
-                case ToolMaker -> sumOfEndOfGameEffects += tools * endOfGameEffectMap.get(effect);
-                case Builder -> sumOfEndOfGameEffects += buildings * endOfGameEffectMap.get(effect);
-                case Shaman -> sumOfEndOfGameEffects += figures * endOfGameEffectMap.get(effect);
+                case FARMER -> sumOfEndOfGameEffects += fields * endOfGameEffectMap.get(effect);
+                case TOOL_MAKER -> sumOfEndOfGameEffects += tools * endOfGameEffectMap.get(effect);
+                case BUILDER -> sumOfEndOfGameEffects += buildings * endOfGameEffectMap.get(effect);
+                case SHAMAN -> sumOfEndOfGameEffects += figures * endOfGameEffectMap.get(effect);
                 default -> greenCards.put(effect, endOfGameEffectMap.get(effect));
             }
         }

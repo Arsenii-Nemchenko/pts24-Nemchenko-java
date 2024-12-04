@@ -5,17 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6f0b158-5064-4651-98e6-e56cdb854849" name="Changes" comment="First implementation of FeedTribeState">
-      <change afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GameBoardIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/GamePhaseControllerComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STONE_AGE.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/BuildingTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/BuildingTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CurrentThrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CurrentThrow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/FigureLocationAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/FigureLocationAdaptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoardComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetSomethingChoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetSomethingChoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetSomethingFixed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GetSomethingFixed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/InterfaceFigureLocationInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/InterfaceFigureLocationInternal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnFieldsAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnFieldsAdaptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnHutAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnHutAdaptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnToolMakerAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/PlaceOnToolMakerAdaptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ResourceSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ResourceSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/RewardMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/RewardMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFields.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardFacade.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerCivilisationCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerCivilisationCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerCivilisationCards.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerCivilizationCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerCivilizationCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/EndOfGameEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/EndOfGameEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerFigures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerFigures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/Effect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/Effect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/InterfacePlayerBoardGameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/InterfacePlayerBoardGameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/StoneAge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/StoneAge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlaceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/CurrentThrowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/CurrentThrowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GameBoardIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GameBoardIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GameBoardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GetCardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GetCardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GetSomethingChoiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/GetSomethingChoiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/ResourceSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/ResourceSourceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/RewardMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/RewardMenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFieldsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFieldsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacadeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacadeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerCivilizationCardsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerCivilizationCardsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerFiguresTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/player_board/PlayerFiguresTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/stone_age/ResourceSourceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +82,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.CivilizationCardPlaceTest.executor": "Run",
+    "JUnit.CivilizationCardPlaceTest.test1.executor": "Run",
+    "JUnit.CivilizationCardPlaceTest.testMakeAction.executor": "Run",
+    "JUnit.GameBoardIntegrationTest.executor": "Run",
     "JUnit.GameBoardIntegrationTest.test1.executor": "Run",
+    "JUnit.GameBoardIntegrationTest.testCards.executor": "Run",
+    "JUnit.GameBoardIntegrationTest.testHutsFieldsWithMorePlayers.executor": "Run",
+    "JUnit.GameBoardIntegrationTest.testInitialization.executor": "Run",
+    "JUnit.GameBoardIntegrationTest.testOnePlayer.executor": "Debug",
+    "JUnit.GameBoardIntegrationTest.testOneResources.executor": "Run",
+    "JUnit.GetSomethingChoiceTest.executor": "Run",
+    "JUnit.ResourceSourceTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -60,23 +101,8 @@
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GameBoardIntegrationTest.test1">
-    <configuration name="CivilizationCardPlaceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="STONE_AGE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
-      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.CivilizationCardPlaceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardIntegrationTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GameBoardIntegrationTest">
+    <configuration name="GameBoardIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="STONE_AGE" />
       <extension name="coverage">
         <pattern>
@@ -86,7 +112,70 @@
       </extension>
       <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
       <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardIntegrationTest.testCards" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
+      <option name="METHOD_NAME" value="testCards" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardIntegrationTest.testHutsFieldsWithMorePlayers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
+      <option name="METHOD_NAME" value="testHutsFieldsWithMorePlayers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardIntegrationTest.testOnePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
+      <option name="METHOD_NAME" value="testOnePlayer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardIntegrationTest.testOneResources" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
+      <option name="METHOD_NAME" value="testOneResources" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,8 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GameBoardIntegrationTest.test1" />
-        <item itemvalue="JUnit.CivilizationCardPlaceTest" />
+        <item itemvalue="JUnit.GameBoardIntegrationTest" />
+        <item itemvalue="JUnit.GameBoardIntegrationTest.testOneResources" />
+        <item itemvalue="JUnit.GameBoardIntegrationTest.testCards" />
+        <item itemvalue="JUnit.GameBoardIntegrationTest.testHutsFieldsWithMorePlayers" />
+        <item itemvalue="JUnit.GameBoardIntegrationTest.testOnePlayer" />
       </list>
     </recent_temporary>
   </component>

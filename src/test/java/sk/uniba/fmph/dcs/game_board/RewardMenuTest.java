@@ -33,6 +33,11 @@ public class RewardMenuTest {
         }
     }
 
+    private interface Player{
+        PlayerOrder playerOrder();
+        InterfacePlayerBoardGameBoard playerBoard();
+    }
+
     private static class MockPlayer implements Player {
         private final PlayerOrder order;
         private final PlayerBoard board;
@@ -65,7 +70,7 @@ public class RewardMenuTest {
         mockEffect2 = Effect.STONE; // Dummy effect
 
         // Creating a RewardMenu instance
-        rewardMenu = new RewardMenu(new Player[]{mockPlayer1, mockPlayer2});
+        //rewardMenu = new RewardMenu((Player[]) new Player[]{mockPlayer1, mockPlayer2});
     }
 
     @Test

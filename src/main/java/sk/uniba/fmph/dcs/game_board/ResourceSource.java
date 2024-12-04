@@ -32,16 +32,16 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         }
 
         for (int i = 0; i < figureCount; i++) {
-            this.figures.add(player.playerOrder());
+            this.figures.add(player.getPlayerOrder());
         }
-        player.playerBoard().takeFigures(figureCount);
+        player.getPlayerBoard().takeFigures(figureCount);
 
         return true;
     }
 
     //Returns true if player can place figureCount figures
     private boolean canPlaceFigures(Player player, int figureCount){
-        if (figures.contains(player.playerOrder()) || !player.playerBoard().hasFigures(figureCount)) {
+        if (figures.contains(player.getPlayerOrder()) || !player.getPlayerBoard().hasFigures(figureCount)) {
             return false;
         }
 
@@ -80,7 +80,7 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
 
         int playerFigureCount = 0;
         for (PlayerOrder playerOrder : figures) {
-            if (playerOrder.equals(player.playerOrder())) {
+            if (playerOrder.equals(player.getPlayerOrder())) {
                 playerFigureCount++;
             }
         }
@@ -89,7 +89,7 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
 
         List<PlayerOrder> toRemove = new ArrayList<>();
         for(PlayerOrder playerOrder: figures){
-            if(playerOrder.equals(player.playerOrder())){
+            if(playerOrder.equals(player.getPlayerOrder())){
                 toRemove.add(playerOrder);
             }
         }
@@ -123,7 +123,7 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
     //Tries to make action
     @Override
     public HasAction tryToMakeAction(Player player) {
-        if (figures.contains(player.playerOrder())) {
+        if (figures.contains(player.getPlayerOrder())) {
             return HasAction.WAITING_FOR_PLAYER_ACTION;
         }
 
@@ -133,11 +133,11 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
     //If no action possible returns true
     @Override
     public boolean newTurn() {
-        if (!figures.isEmpty()) {
-            return false;
+        if(figures.isEmpty()){
+            figures.clear();
         }
 
-        return true;
+        return false;
     }
 
     //Returns state of ResourceSource class

@@ -26,7 +26,7 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
 
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
-        if(!player.playerBoard().hasFigures(count)){
+        if(!player.getPlayerBoard().hasFigures(count) || count!=1){
             return HasAction.NO_ACTION_POSSIBLE;
         }
 
@@ -39,10 +39,6 @@ public class PlaceOnFieldsAdaptor implements InterfaceFigureLocationInternal {
 
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
-        if(!toolMakerHutFields.canPlaceOnFields(player)){
-            return ActionResult.FAILURE;
-        }
-
         if(toolMakerHutFields.actionFields(player)) {
             return ActionResult.ACTION_DONE;
         }

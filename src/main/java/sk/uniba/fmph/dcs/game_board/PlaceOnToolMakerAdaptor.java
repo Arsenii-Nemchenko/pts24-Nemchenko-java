@@ -28,7 +28,7 @@ private final ToolMakerHutFields toolMakerHutFields;
 
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
-        if(!player.playerBoard().hasFigures(count)){
+        if(!player.getPlayerBoard().hasFigures(count) || count!=1){
             return HasAction.NO_ACTION_POSSIBLE;
         }
 
@@ -41,10 +41,6 @@ private final ToolMakerHutFields toolMakerHutFields;
 
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
-        if(!toolMakerHutFields.canPlaceOnToolMaker(player)){
-            return ActionResult.FAILURE;
-        }
-
         if(toolMakerHutFields.actionToolMaker(player)) {
             return ActionResult.ACTION_DONE;
         }

@@ -31,7 +31,7 @@ public class RewardMenu implements InterfaceTakeReward {
         this.players = players;
         this.remainingPlayers = new ArrayList<>();
         for (Player player : players) {
-            remainingPlayers.add(player.playerOrder());
+            remainingPlayers.add(player.getPlayerOrder());
         }
     }
 
@@ -61,10 +61,10 @@ public class RewardMenu implements InterfaceTakeReward {
             return false;
         }
         for (Player p : players) {
-            if (p.playerOrder().equals(player)) {
+            if (p.getPlayerOrder().equals(player)) {
                 remainingPlayers.remove(player);
                 rewards.remove(reward);
-                p.playerBoard().giveEffect(List.of(reward));
+                p.getPlayerBoard().giveEffect(List.of(reward));
                 return true;
             }
         }
@@ -92,8 +92,8 @@ public class RewardMenu implements InterfaceTakeReward {
         }
         if (rewards.size() == 1) {
             for (Player p : players) {
-                if (p.playerOrder().equals(player)) {
-                    p.playerBoard().giveEffect(rewards);
+                if (p.getPlayerOrder().equals(player)) {
+                    p.getPlayerBoard().giveEffect(rewards);
                     remainingPlayers.remove(player);
                     return HasAction.AUTOMATIC_ACTION_DONE;
                 }

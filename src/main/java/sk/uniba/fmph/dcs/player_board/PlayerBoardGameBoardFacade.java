@@ -49,7 +49,7 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      */
     @Override
     public boolean doNotFeedThisTurn() {
-        boolean fed = this.playerBoard.getTribeFedStatus().setTribeFed();
+        boolean fed = this.playerBoard.getTribeFedStatus().doNotFeedThisTurn();
         if (fed) {
             this.playerBoard.addPoints(-10);
         }
@@ -67,8 +67,9 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
     }
 
     @Override
-    public void newTurn() {
+    public boolean newTurn() {
         this.playerBoard.newTurn();
+        return false;
     }
 
     /**
@@ -77,8 +78,8 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      * @param effects The array of effects to give to the player.
      */
     @Override
-    public void giveEffect(final Effect[] effects) {
-        this.playerBoard.getPlayerResourcesAndFood().giveResources(List.of(effects));
+    public void giveEffect(final Collection<Effect> effects) {
+        this.playerBoard.getPlayerResourcesAndFood().giveResources(effects);
     }
 
     /**
@@ -87,8 +88,8 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      * @param endEffects The array of end-of-game effects to give to the player.
      */
     @Override
-    public void giveEndOfGameEffect(final EndOfGameEffect[] endEffects) {
-        this.playerBoard.getPlayerCivilisationCards().addEndOfGameEffects(endEffects);
+    public void giveEndOfGameEffect(final Collection<EndOfGameEffect> endEffects) {
+        this.playerBoard.getPlayerCivilisationCards().addEndOfGameEffects(endEffects.toArray(new EndOfGameEffect[0]));
     }
 
     /**
@@ -97,7 +98,7 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
      * @param stuff The array of resources to be taken.
      */
     @Override
-    public boolean takeResources(final Effect[] stuff) {
+    public boolean takeResources(final Collection<Effect> stuff) {
         if (this.playerBoard.getPlayerResourcesAndFood().hasResources(stuff)) {
             this.playerBoard.getPlayerResourcesAndFood().takeResources(stuff);
             return true;
@@ -135,11 +136,6 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
     @Override
     public boolean hasFigures(final int count) {
         return this.playerBoard.getPlayerFigures().hasFigures(count);
-    }
-
-    @Override
-    public void addPoints(final int points) {
-        this.playerBoard.addPoints(points);
     }
 
     /**

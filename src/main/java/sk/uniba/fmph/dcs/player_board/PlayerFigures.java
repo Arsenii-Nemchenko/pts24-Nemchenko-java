@@ -8,6 +8,10 @@ import java.util.Map;
 public class PlayerFigures implements InterfaceGetState {
 private int totalFigures;
 private int figures;
+public PlayerFigures(){
+    totalFigures = 5;
+    figures = 5;
+}
 
     public void addNewFigure(){
         if(totalFigures < 10){
@@ -44,6 +48,10 @@ private int figures;
         );
 
         return new JSONObject(state).toString();
+    }
+
+    public int getFigures() {
+        return figures;
     }
 
 }

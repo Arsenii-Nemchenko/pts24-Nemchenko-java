@@ -8,7 +8,7 @@ import java.util.List;
 public class GetSomethingFixed implements EvaluateCivilizationCardImmediateEffect{
     @Override
     public boolean performEffect(Player player, Effect choice) {
-        player.playerBoard().giveEffect(List.of(choice));
+        player.getPlayerBoard().giveEffect(List.of(choice));
         return true;
     }
 }
