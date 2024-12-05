@@ -95,6 +95,9 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
                 return ActionResult.FAILURE;
             }
         }
+        if(!player.getPlayerBoard().takeResources(List.of(inputResources))){
+            return ActionResult.FAILURE;
+        }
 
         List<ImmediateEffect> immediateEffects = card.get().getImmediateEffectType();
 

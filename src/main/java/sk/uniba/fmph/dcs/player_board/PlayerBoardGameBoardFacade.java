@@ -153,4 +153,8 @@ public final class PlayerBoardGameBoardFacade implements InterfaceFeedTribe, Int
         Optional<Integer> value = this.playerBoard.getPlayerTools().useTool(idx);
         return value;
     }
+
+    public InterfaceGetState getPlayerBoard() {
+        return playerBoard;
+    }
 }

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ToolMakerHutFields{
@@ -81,7 +82,7 @@ public class ToolMakerHutFields{
             return false;
         }
 
-        player.getPlayerBoard().giveFigure();
+        player.getPlayerBoard().giveEffect(List.of(Effect.FIELD));
         hutFigures =null;
         return true;
     }

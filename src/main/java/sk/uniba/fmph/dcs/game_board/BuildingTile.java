@@ -52,6 +52,10 @@ public class BuildingTile implements InterfaceFigureLocationInternal {
         if(points.isEmpty()){
             return ActionResult.FAILURE;
         }
+
+        if(!player.getPlayerBoard().takeResources(List.of(inputResources))){
+            return ActionResult.FAILURE;
+        }
         
         // Give points to player
         List<Effect> pointsToGive = new ArrayList<>();

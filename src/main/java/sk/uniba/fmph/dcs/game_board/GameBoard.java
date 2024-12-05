@@ -185,7 +185,6 @@ public class GameBoard implements InterfaceGetState {
 
         // Any 2 resources (1 card)
         allCards.add(new CivilizationCard(Arrays.asList(ImmediateEffect.ArbitraryResource, ImmediateEffect.ArbitraryResource), Arrays.asList(EndOfGameEffect.MEDICINE)));
-        Collections.shuffle(allCards);
         return allCards;
     }
     private List<Building> getBuildings(){
@@ -219,7 +218,6 @@ public class GameBoard implements InterfaceGetState {
         buildings.add(new ArbitraryBuilding(7));
         buildings.add(new ArbitraryBuilding(7));
 
-        Collections.shuffle(buildings);
         return buildings;
     }
 
@@ -235,4 +233,5 @@ public class GameBoard implements InterfaceGetState {
         }
         return new JSONObject(informationFromGameBoard).toString();
     }
+
 }

@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6f0b158-5064-4651-98e6-e56cdb854849" name="Changes" comment="First implementation of FeedTribeState" />
+    <list default="true" id="c6f0b158-5064-4651-98e6-e56cdb854849" name="Changes" comment="First implementation of FeedTribeState">
+      <change afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/GameEndState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/StoneAgeGameIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ArbitraryBuilding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ArbitraryBuilding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/BuildingTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/BuildingTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/CivilizationCardPlace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/ToolMakerHutFields.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/GamePhase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/GamePhase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/NewRoundState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/NewRoundState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/WaitingForToolUseState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_phase_controller/WaitingForToolUseState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerBoardGameBoardFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerFigures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/player_board/PlayerFigures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/StoneAge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/StoneAgeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/stone_age/StoneAgeGame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +66,8 @@
     "JUnit.GameBoardIntegrationTest.testOneResources.executor": "Run",
     "JUnit.GetSomethingChoiceTest.executor": "Run",
     "JUnit.ResourceSourceTest.executor": "Run",
+    "JUnit.StoneAgeGameIntegrationTest.executor": "Debug",
+    "JUnit.StoneAgeGameIntegrationTest.test1_makeAction.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -58,7 +76,12 @@
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.GameBoardIntegrationTest">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="sk.uniba.fmph.dcs.stone_age" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.StoneAgeGameIntegrationTest.test1_makeAction">
     <configuration name="GameBoardIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="STONE_AGE" />
       <extension name="coverage">
@@ -90,38 +113,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardIntegrationTest.testHutsFieldsWithMorePlayers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="STONE_AGE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
-      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
-      <option name="METHOD_NAME" value="testHutsFieldsWithMorePlayers" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardIntegrationTest.testOnePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="STONE_AGE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
-      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
-      <option name="METHOD_NAME" value="testOnePlayer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GameBoardIntegrationTest.testOneResources" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="STONE_AGE" />
       <extension name="coverage">
@@ -133,6 +124,37 @@
       <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
       <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.GameBoardIntegrationTest" />
       <option name="METHOD_NAME" value="testOneResources" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StoneAgeGameIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.StoneAgeGameIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StoneAgeGameIntegrationTest.test1_makeAction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="STONE_AGE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sk.uniba.fmph.dcs.game_board.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="sk.uniba.fmph.dcs.game_board" />
+      <option name="MAIN_CLASS_NAME" value="sk.uniba.fmph.dcs.game_board.StoneAgeGameIntegrationTest" />
+      <option name="METHOD_NAME" value="test1_makeAction" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -153,11 +175,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StoneAgeGameIntegrationTest.test1_makeAction" />
+        <item itemvalue="JUnit.StoneAgeGameIntegrationTest" />
         <item itemvalue="JUnit.GameBoardIntegrationTest" />
         <item itemvalue="JUnit.GameBoardIntegrationTest.testOneResources" />
         <item itemvalue="JUnit.GameBoardIntegrationTest.testCards" />
-        <item itemvalue="JUnit.GameBoardIntegrationTest.testHutsFieldsWithMorePlayers" />
-        <item itemvalue="JUnit.GameBoardIntegrationTest.testOnePlayer" />
       </list>
     </recent_temporary>
   </component>
@@ -204,5 +226,26 @@
     <MESSAGE value="First implementation of FieldsAdaptor and ToolMakerAdaptor" />
     <MESSAGE value="First implementation of FeedTribeState" />
     <option name="LAST_COMMIT_MESSAGE" value="First implementation of FeedTribeState" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/sk/uniba/fmph/dcs/game_board/GameBoard.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/sk/uniba/fmph/dcs/game_board/StoneAgeGameIntegrationTest.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

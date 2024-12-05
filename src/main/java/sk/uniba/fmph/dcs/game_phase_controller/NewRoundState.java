@@ -26,12 +26,15 @@ public class NewRoundState implements InterfaceGamePhaseState {
 
     /**
      * Constructs a new {@code NewRoundState} with the specified {@code InterfaceNewTurn} instance.
-     *
-     * @param places an instance of {@link InterfaceNewTurn} used to initialize the new round
      */
-    public NewRoundState(InterfaceNewTurn places) {
-        this.places = places;
+    public NewRoundState() {
         this.roundInitialized = false;
+        places = new InterfaceNewTurn() {
+            @Override
+            public boolean newTurn() {
+                return false;
+            }
+        };
     }
 
     /**
