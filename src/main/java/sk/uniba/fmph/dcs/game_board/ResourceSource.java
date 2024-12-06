@@ -15,6 +15,16 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
 
     private CurrentThrow currentThrow;
 
+    /**
+     * Constructs a new ResourceSource.
+     *
+     * @param name             The name of the resource source.
+     * @param resource         The type of resource provided by this source.
+     * @param maxFigures       The maximum number of figures allowed at this source.
+     * @param maxFigureColors  The maximum number of different players' figures allowed.
+     * @param currentThrow     The CurrentThrow instance to handle dice-based resource gathering.
+     */
+
     public ResourceSource(String name, Effect resource, int maxFigures, int maxFigureColors, CurrentThrow currentThrow) {
         this.currentThrow = currentThrow;
         this.resource = resource;
@@ -24,7 +34,13 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         figures = new ArrayList<>();
     }
 
-    //Places figureCount figures
+    /**
+     * Places a specified number of figures for the given player.
+     *
+     * @param player      The player placing the figures.
+     * @param figureCount The number of figures to place.
+     * @return True if the figures were placed successfully, false otherwise.
+     */
     @Override
     public boolean placeFigures(Player player, int figureCount) {
         if(!canPlaceFigures(player, figureCount)){
@@ -39,7 +55,13 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return true;
     }
 
-    //Returns true if player can place figureCount figures
+    /**
+     * Checks if the specified player can place the given number of figures.
+     *
+     * @param player      The player attempting to place figures.
+     * @param figureCount The number of figures to place.
+     * @return True if placement is allowed, false otherwise.
+     */
     private boolean canPlaceFigures(Player player, int figureCount){
         if (figures.contains(player.getPlayerOrder()) || !player.getPlayerBoard().hasFigures(figureCount)) {
             return false;
@@ -62,7 +84,13 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return true;
     }
 
-    //Tries to place figures
+    /**
+     * Attempts to place figures and returns the result.
+     *
+     * @param player The player attempting to place figures.
+     * @param count  The number of figures to place.
+     * @return {@code HasAction.AUTOMATIC_ACTION_DONE} if successful, otherwise {@code HasAction.NO_ACTION_POSSIBLE}.
+     */
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
         if (placeFigures(player, count)) {
@@ -71,7 +99,14 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return HasAction.NO_ACTION_POSSIBLE;
     }
 
-    //Makes action and uses tools at once
+    /**
+     * Executes an action for a player, including using tools and gathering resources.
+     *
+     * @param player          The player performing the action.
+     * @param inputResources  The input resources for the action.
+     * @param outputResources The output resources from the action.
+     * @return {@code ActionResult.ACTION_DONE} if successful, {@code ActionResult.FAILURE} otherwise.
+     */
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
         if (outputResources.length != 0) {
@@ -115,12 +150,23 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return ActionResult.ACTION_DONE;
     }
 
-    //You never can skip this action
+    /**
+     * Indicates that skipping an action is never allowed at this resource source.
+     *
+     * @param player The player attempting to skip the action.
+     * @return Always false.
+     */
     @Override
     public boolean skipAction(final Player player) {
         return false;
     }
-    //Tries to make action
+
+    /**
+     * Attempts to make an action for the given player.
+     *
+     * @param player The player attempting the action.
+     * @return {@code HasAction.WAITING_FOR_PLAYER_ACTION} if the action is pending, otherwise {@code HasAction.NO_ACTION_POSSIBLE}.
+     */
     @Override
     public HasAction tryToMakeAction(Player player) {
         if (figures.contains(player.getPlayerOrder())) {
@@ -130,7 +176,11 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return HasAction.NO_ACTION_POSSIBLE;
     }
 
-    //If no action possible returns true
+    /**
+     * Prepares for a new turn by clearing all figures if empty.
+     *
+     * @return False, indicating no additional actions are needed.
+     */
     @Override
     public boolean newTurn() {
         if(figures.isEmpty()){
@@ -140,7 +190,11 @@ public class ResourceSource implements InterfaceFigureLocationInternal {
         return false;
     }
 
-    //Returns state of ResourceSource class
+    /**
+     * Returns the current state of the ResourceSource as a JSON string.
+     *
+     * @return The state of the resource source.
+     */
     public String state() {
         Map<String, Object> state = Map.of(
                 "name", name,

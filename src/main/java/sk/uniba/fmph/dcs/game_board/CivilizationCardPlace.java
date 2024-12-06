@@ -1,6 +1,5 @@
 package sk.uniba.fmph.dcs.game_board;
 
-import org.apache.commons.collections4.Unmodifiable;
 import org.json.JSONObject;
 import sk.uniba.fmph.dcs.stone_age.*;
 
@@ -23,7 +22,18 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
     private GetSomethingChoice getSomethingChoicePerformer;
     private GetSomethingThrow getSomethingThrow;
 
-
+    /**
+     * Constructs a CivilizationCardPlace object.
+     *
+     * @param previousCard                      the previous card place in the chain
+     * @param deck                              the deck of civilization cards
+     * @param requiredResources                 the number of resources required to interact with the card
+     * @param getSomethingChoicePerformer       performer for "get something by choice" effect
+     * @param getSomethingThrow                 performer for "throw something" effect
+     * @param getCardImmediateEffectPerformer   performer for "get card immediately" effect
+     * @param allPlayersTakeARewardEffectPerformer performer for "all players take a reward" effect
+     * @param getSomethingFixedPerformer        performer for "get something fixed" effect
+     */
     public CivilizationCardPlace(CivilizationCardPlace previousCard, CivilizationCardDeck deck,
                                  int requiredResources, GetSomethingChoice getSomethingChoicePerformer,
                                  GetSomethingThrow getSomethingThrow, GetCard getCardImmediateEffectPerformer,
@@ -44,11 +54,22 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
 
     }
 
-    //Resolves a problem with card chain
+    /**
+     * Sets the next card place in the chain.
+     *
+     * @param next the next card place
+     */
     public void setNextCard(CivilizationCardPlace next) {
         nextCardPlace = next;
     }
-    //Places figures on the card if the conditions are right
+
+    /**
+     * Places a figure on the card if conditions are met.
+     *
+     * @param player      the player placing the figure
+     * @param figureCount the number of figures to place
+     * @return {@code true} if the figures were placed successfully, otherwise {@code false}
+     */
     @Override
     public boolean placeFigures(Player player,int figureCount) {
 
@@ -65,7 +86,13 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return true;
     }
 
-    //Tries to place figure
+    /**
+     * Attempts to place figures on the card.
+     *
+     * @param player the player attempting to place figures
+     * @param count  the number of figures to place
+     * @return a {@link HasAction} indicating the result of the attempt
+     */
     @Override
     public HasAction tryToPlaceFigures(Player player, int count) {
         if (card.isPresent() && placeFigures(player, count)) {
@@ -75,9 +102,14 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return HasAction.NO_ACTION_POSSIBLE;
     }
 
-    //Makes action if the conditions are right
-    //InputResources contains resources to pay,
-    // outputResources contains resources to get in case of getSomethingChoice
+     /**
+     * Makes an action on the card if conditions are met.
+     *
+     * @param player         the player performing the action
+     * @param inputResources the resources to pay
+     * @param outputResources the resources to receive in case of choice
+     * @return an {@link ActionResult} indicating the result of the action
+     */
     @Override
     public ActionResult makeAction(Player player, Effect[] inputResources, Effect[] outputResources) {
         List<Effect> input = Arrays.asList(inputResources);
@@ -138,7 +170,12 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return true;
     }
 
-    //Skips action
+    /**
+     * Skips the action for the current player.
+     *
+     * @param player the player skipping the action
+     * @return {@code true} if the action was skipped successfully, otherwise {@code false}
+     */
     @Override
     public boolean skipAction(Player player) {
         if (!player.getPlayerOrder().equals(figures)) {
@@ -149,7 +186,12 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return true;
     }
 
-    //Tries to make action
+    /**
+     * Checks if the player can make an action.
+     *
+     * @param player the player to check
+     * @return a {@link HasAction} indicating whether an action can be made
+     */
     @Override
     public HasAction tryToMakeAction(Player player) {
         if (!player.getPlayerOrder().equals(figures)) {
@@ -158,7 +200,11 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return HasAction.WAITING_FOR_PLAYER_ACTION;
     }
 
-    //If all the action are taken -> newTurn
+    /**
+     * Prepares for a new turn by shifting cards if all actions are taken.
+     *
+     * @return {@code true} if the turn is ready, otherwise {@code false}
+     */
     @Override
     public boolean newTurn() {
         if (figures != null) {
@@ -172,7 +218,11 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
         return false;
     }
 
-    //Shifts cards to the right
+    /**
+     * Retrieves the next card in the chain or from the deck.
+     *
+     * @return an {@link Optional} containing the next card, if available
+     */
     public Optional<CivilizationCard> getNextCard(){
         if(card.isPresent()){
             Optional<CivilizationCard> temp = card;
@@ -189,7 +239,11 @@ public class CivilizationCardPlace implements InterfaceFigureLocationInternal, I
 
     }
 
-    //State of this cardPlace class
+    /**
+     * Returns the state of this card place as a JSON string.
+     *
+     * @return a JSON representation of the state
+     */
     @Override
     public String state() {
         Map<String, Object> map = Map.of(

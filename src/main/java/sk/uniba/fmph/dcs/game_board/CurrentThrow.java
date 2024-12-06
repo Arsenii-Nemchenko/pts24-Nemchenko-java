@@ -15,7 +15,13 @@ public final class CurrentThrow implements InterfaceToolUse {
     private int throwResult;
     private Player player;
 
-
+    /**
+     * Constructs a CurrentThrow object for the specified player, effect, and number of dice.
+     *
+     * @param player the player performing the throw
+     * @param effect the type of resource the throw is for
+     * @param dices  the number of dice to roll
+     */
     public CurrentThrow(Player player, Effect effect, int dices) {
         this.player = player;
         this.throwsFor = effect;
@@ -25,7 +31,13 @@ public final class CurrentThrow implements InterfaceToolUse {
         }
 
     }
-
+    /**
+     * Initializes a throw action for the specified player, effect, and number of dice.
+     *
+     * @param player the player performing the throw
+     * @param effect the type of resource the throw is for
+     * @param dices  the number of dice to roll
+     */
     public void initiate(Player player, Effect effect, int dices){
         this.player = player;
         this.throwsFor = effect;
@@ -34,7 +46,12 @@ public final class CurrentThrow implements InterfaceToolUse {
             this.throwResult += element;
         }
     }
-
+    /**
+     * Uses a tool to modify the current throw result.
+     *
+     * @param idx the index of the tool to use
+     * @return {@code true} if the tool was successfully used, {@code false} otherwise
+     */
     @Override
     public boolean useTool(int idx) {
 
@@ -46,12 +63,21 @@ public final class CurrentThrow implements InterfaceToolUse {
         this.throwResult += res.get();
         return true;
     }
-
+    /**
+     * Checks if the player has sufficient tools to modify the throw result.
+     *
+     * @return {@code true} if tools can be used, {@code false} otherwise
+     */
     @Override
     public boolean canUseTools() {
         return player.getPlayerBoard().hasSufficientTools(1);
     }
 
+    /**
+     * Finalizes the tool usage and calculates resources based on the throw result.
+     *
+     * @return {@code true} if the operation is successful, {@code false} otherwise
+     */
     @Override
     public boolean finishUsingTools() {
 
@@ -89,6 +115,12 @@ public final class CurrentThrow implements InterfaceToolUse {
 
         return true;
     }
+
+    /**
+     * Returns the current state of this throw action as a JSON string.
+     *
+     * @return a JSON representation of the state
+     */
 
     public String state(){
         return new JSONObject(Map.of("throwsFor", throwsFor,

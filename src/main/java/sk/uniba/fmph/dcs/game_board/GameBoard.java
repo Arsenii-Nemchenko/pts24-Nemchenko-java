@@ -5,11 +5,21 @@ import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.*;
 
+/**
+ * Represents the game board for a multiplayer game, managing locations, players,
+ * and game elements like Civilization Cards and buildings.
+ * Implements {@link InterfaceGetState} for providing a JSON representation of its state.
+ */
 public class GameBoard implements InterfaceGetState {
     private final Map<Location, InterfaceFigureLocationInternal> gameBoardLocations =  new HashMap<>();
     private final List<Player> players;
 
-
+    /**
+     * Constructs a new GameBoard with the given players.
+     * Initializes game locations, cards, buildings, and other game-specific elements.
+     *
+     * @param players a list of players participating in the game
+     */
     public GameBoard(List<Player> players) {
         this.players = players;
         List<CivilizationCard> civilizationCards = getCards();
@@ -121,6 +131,12 @@ public class GameBoard implements InterfaceGetState {
 
 
     }
+
+    /**
+     * Creates and returns a map of locations with adapters for figure placement.
+     *
+     * @return a map linking locations to their figure placement adapters
+     */
     public final Map<Location, InterfaceFigureLocation> getMap(){
         Map<Location, InterfaceFigureLocation> map = new HashMap<>();
         for(Location location: gameBoardLocations.keySet()){
@@ -128,6 +144,11 @@ public class GameBoard implements InterfaceGetState {
         }
         return map;
     }
+    /**
+     * Creates and returns a list of predefined Civilization Cards.
+     *
+     * @return a list of Civilization Cards
+     */
     private List<CivilizationCard> getCards(){
         List<CivilizationCard> allCards = new ArrayList<>();
         // Dice roll (10 cards)
@@ -187,6 +208,12 @@ public class GameBoard implements InterfaceGetState {
         allCards.add(new CivilizationCard(Arrays.asList(ImmediateEffect.ArbitraryResource, ImmediateEffect.ArbitraryResource), Arrays.asList(EndOfGameEffect.MEDICINE)));
         return allCards;
     }
+
+    /**
+     * Creates and returns a list of predefined buildings.
+     *
+     * @return a list of buildings
+     */
     private List<Building> getBuildings(){
         List<Building> buildings = new ArrayList<>();
 
@@ -224,6 +251,11 @@ public class GameBoard implements InterfaceGetState {
     public final Map<Location, InterfaceFigureLocationInternal> getMapInternal(){
         return gameBoardLocations;
     }
+    /**
+     * Returns the current state of this throw action as a JSON string.
+     *
+     * @return a JSON representation of the state
+     */
     @Override
     public String state() {
         Map<Location, String> informationFromGameBoard = new HashMap<>();

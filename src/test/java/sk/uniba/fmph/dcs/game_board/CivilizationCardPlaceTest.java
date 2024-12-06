@@ -152,12 +152,13 @@ public class CivilizationCardPlaceTest {
         Effect[] badInput1 = new Effect[]{Effect.STONE,Effect.STONE,Effect.STONE, Effect.FOOD};
         Effect[] badInput2 = new Effect[]{Effect.STONE,Effect.STONE};
         Effect[] input = new Effect[]{Effect.STONE,Effect.STONE,Effect.STONE, Effect.CLAY};
+        player1.getPlayerBoard().giveEffect(Arrays.stream(input).toList());
 
         assertEquals(ActionResult.FAILURE, place4.makeAction(player3, input, new Effect[0]));
         assertEquals(ActionResult.FAILURE, place4.makeAction(player1, badInput1, new Effect[0]));
         assertEquals(ActionResult.FAILURE, place4.makeAction(player1, badInput2, new Effect[0]));
 
-        assertEquals(ActionResult.ACTION_DONE, place4.makeAction(player1, input, new Effect[0]));
+        assertEquals(ActionResult.ACTION_DONE, place4.makeAction(player1, input, new Effect[]{Effect.GOLD, Effect.GOLD}));
         assertFalse(place4.skipAction(player3));
         assertFalse(place4.skipAction(player1));
 

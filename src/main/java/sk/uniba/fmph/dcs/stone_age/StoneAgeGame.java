@@ -13,6 +13,11 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
     private final StoneAgeObservable observable;
     private final InterfaceGamePhaseController gamePhaseController;
     private final GameBoard gameBoard;
+    /**
+     * Constructs a new StoneAgeGame with the specified number of players.
+     *
+     * @param amountOfPlayers The number of players participating in the game.
+     */
 
     public StoneAgeGame(int amountOfPlayers) {
         //Create map of players
@@ -34,7 +39,11 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         this.observable = new StoneAgeObservable();
     }
 
-
+    /**
+     * Creates the controller mapping game phases to their respective states.
+     *
+     * @return A map of {@link GamePhase} to {@link InterfaceGamePhaseState}.
+     */
     private Map<GamePhase, InterfaceGamePhaseState> createController(){
         Map<GamePhase, InterfaceGamePhaseState> map = new HashMap<>();
 
@@ -47,6 +56,11 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         map.put(GamePhase.PLACE_FIGURES, new PlaceFiguresState(gameBoard.getMap()));
         return map;
     }
+
+    /**
+     * Notifies the observable about the current game state, including the game board, game phases,
+     * and player boards.
+     */
     private void notifyObserver(){
         observable.notify(gameBoard.state());
         observable.notify(gamePhaseController.state());
@@ -55,6 +69,15 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
             observable.notify(playerBoard.getPlayerBoard().state());
         }
     }
+
+    /**
+     * Places a figure on the card if conditions are met.
+     *
+     * @param playerId the player skipping the action
+     * @param location the location
+     * @param figuresCount the count of figures being placed
+     * @return {@code true} if the figures were placed successfully, otherwise {@code false}
+     */
 
     @Override
     public boolean placeFigures(int playerId, Location location, int figuresCount) {
@@ -67,6 +90,14 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         return figuresResult;
     }
 
+    /**
+     * Executes an action for a player.
+     *
+     * @param playerId  The player performing the action.
+     * @param usedResources  The input resources for the action.
+     * @param desiredResources The output resources from the action.
+     * @return {@code true} if successful, otherwise {@code false} .
+     */
     @Override
     public boolean makeAction(int playerId, Location location, List<Effect> usedResources, List<Effect> desiredResources) {
         if(!players.containsKey(playerId)){
@@ -78,6 +109,13 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         return actionResult;
     }
 
+    /**
+     * Skips the action for the current player on specified location.
+     *
+     * @param playerId the player skipping the action
+     * @param location the location
+     * @return {@code true} if the action was skipped successfully, otherwise {@code false}
+     */
     @Override
     public boolean skipAction(int playerId, Location location) {
         if(!players.containsKey(playerId)){
@@ -89,6 +127,13 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         return skipActionResult;
     }
 
+    /**
+     * Uses a tool to modify the throw result.
+     *
+     * @param playerId the player that uses tools
+     * @param toolIndex the index of the tool to use
+     * @return {@code true} if the tool was successfully used, {@code false} otherwise
+     */
     @Override
     public boolean useTools(int playerId, int toolIndex) {
         if(!players.containsKey(playerId)){
@@ -100,6 +145,12 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         return useToolsResult;
     }
 
+    /**
+     * Indicates that the player will no longer use tools for this turn.
+     *
+     * @param playerId The ID of the player.
+     * @return {@code true} if successfully indicated; {@code false} otherwise.
+     */
     @Override
     public boolean noMoreToolsThisThrow(int playerId) {
         if(!players.containsKey(playerId)){
@@ -111,6 +162,14 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         return noMoreToolsResult;
     }
 
+
+    /**
+     * Feeds the tribe for the specified player using the given resources.
+     *
+     * @param playerId  The ID of the player feeding their tribe.
+     * @param resources The resources used to feed the tribe.
+     * @return {@code true} if the tribe was successfully fed; {@code false} otherwise.
+     */
     @Override
     public boolean feedTribe(int playerId, List<Effect> resources) {
         if(!players.containsKey(playerId)){
@@ -121,7 +180,12 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         notifyObserver();
         return feedTribeResult;
     }
-
+    /**
+     * Indicates that the player will not feed their tribe this turn.
+     *
+     * @param playerId The ID of the player.
+     * @return {@code true} if successfully indicated; {@code false} otherwise.
+     */
     @Override
     public boolean doNotFeedThisTurn(int playerId) {
         if(!players.containsKey(playerId)){
@@ -132,7 +196,13 @@ public class StoneAgeGame implements InterfaceStoneAgeGame{
         notifyObserver();
         return doNotFeedResult;
     }
-
+    /**
+     * Makes a reward choice for all players.
+     *
+     * @param playerId The ID of the player making the choice.
+     * @param reward   The reward chosen.
+     * @return {@code true} if the reward choice was successful; {@code false} otherwise.
+     */
     @Override
     public boolean makeAllPlayersTakeARewardChoice(int playerId, Effect reward) {
         if(!players.containsKey(playerId)){
