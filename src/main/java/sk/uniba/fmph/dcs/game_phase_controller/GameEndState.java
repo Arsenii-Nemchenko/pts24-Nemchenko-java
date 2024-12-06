@@ -1,10 +1,10 @@
-package sk.uniba.fmph.dcs.stone_age;
+package sk.uniba.fmph.dcs.game_phase_controller;
 
-import sk.uniba.fmph.dcs.game_phase_controller.InterfaceGamePhaseState;
+import sk.uniba.fmph.dcs.stone_age.*;
 
 import java.util.Collection;
 
-public class GameEndState implements InterfaceGamePhaseState {
+public class GameEndState implements InterfaceGamePhaseState{
 
     @Override
     public ActionResult placeFigures(PlayerOrder player, Location location, int figuresCount) {
